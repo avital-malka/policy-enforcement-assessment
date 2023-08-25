@@ -1,0 +1,7 @@
+uvicorn==0.23.2
+pydantic==2.3.0
+dataclasses-json==0.5.14
+
+pytest==7.4.0
+pytest-cov==4.1.0
+flake8==6.1.0
