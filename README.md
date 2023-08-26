@@ -61,3 +61,8 @@ I considered using Pydantic's `@field_validator('name')` to validate unique poli
 ### Stage 2
 1. I assume that it is acceptable to have an Arupa policy and a Frisco policy sharing the same name, 
 as long as the uniqueness constraint is maintained among Arupa policies.
+
+### Stage 3
+1. I could add more tests, but for this exercise, I believe it's sufficient.
+
+

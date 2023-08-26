@@ -4,8 +4,7 @@ from uuid import uuid4
 from functools import wraps
 
 from log_config import logging
-from errors import PolicyNotFoundError
-
+from errors import PolicyNotFoundError, RuleNotFoundError
 
 decorator_logger = logging.getLogger(__name__)
 
@@ -19,6 +18,18 @@ def validate_policy_exists(func):
         if policy_id not in self.policies_by_id:
             raise PolicyNotFoundError(policy_id)
         return func(self, policy_id, *args, **kwargs)
+    return wrapper
+
+
+def validate_rule_exists(func):
+    """
+    Decorator: Validates that a rule with the specified ID exists.
+    """
+    @wraps(func)
+    def wrapper(self, rule_id: uuid4, *args, **kwargs):
+        if rule_id not in self.rule_manager.rules_by_id:
+            raise RuleNotFoundError(rule_id)
+        return func(self, rule_id, *args, **kwargs)
     return wrapper
 
 
